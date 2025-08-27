@@ -69,6 +69,10 @@ const SignUpPage = () => {
     try {
       setLoading(true);
 
+      if (!photoFile) {
+        toast.error("Profile photo is required");
+        return;
+      }
       const cred = await createUserWithEmailAndPassword(
         auth,
         userData.email,
@@ -95,7 +99,7 @@ const SignUpPage = () => {
         full_name: userData.name,
         id: uid,
         phone_number: userData.phone || "",
-        profile_picture_url: profileURL || "",
+        profile_picture_url: profileURL,
         uid: uid,
         dob: userData.dob ? `${userData.dob}T00:00:00.000` : "",
       };
@@ -105,8 +109,7 @@ const SignUpPage = () => {
       toast.success("Account created!");
       navigate(URL.INDEX ?? "/");
     } catch (err) {
-      console.error(err);
-      const msg = err?.message || "Something went wrong. Please try again.";
+      const msg = err?.code || "Something went wrong. Please try again.";
       toast.error(msg);
     } finally {
       setLoading(false);
@@ -115,7 +118,7 @@ const SignUpPage = () => {
 
   return (
     <div className="min-h-screen bg-bgColor py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
-      <div className="border relative px-4 pt-7 pb-8 bg-bgLightColor border-mainColor shadow-md shadow-shadowColor w-11/12 sm:w-3/4 md:w-2/3 max-w-md mx-auto sm:px-10 rounded-md">
+      <div className=" relative px-4 pt-7 pb-8 bg-white  shadow-md shadow-shadowColor w-11/12 sm:w-3/4 md:w-2/3 max-w-md mx-auto sm:px-10 rounded-md">
         <form autoComplete="on" onSubmit={onContinue}>
           <div className="flex flex-col items-center mb-6">
             <div className="relative w-24 h-24 rounded-full border-2 border-borderColor overflow-hidden bg-mainLightColor">
@@ -150,6 +153,14 @@ const SignUpPage = () => {
             type="text"
             required
             onChange={handleChange}
+            onKeyDown={(e) => {
+              if (/[0-9]/.test(e.key)) {
+                e.preventDefault();
+              }
+              if (e.key === " " && e.currentTarget.selectionStart === 0) {
+                e.preventDefault();
+              }
+            }}
             value={userData.name}
             placeholder="John Doe"
             className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
@@ -161,6 +172,11 @@ const SignUpPage = () => {
             type="email"
             required
             onChange={handleChange}
+            onKeyDown={(e) => {
+              if (e.key === " ") {
+                e.preventDefault();
+              }
+            }}
             value={userData.email}
             placeholder="you@example.com"
             className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
@@ -172,6 +188,7 @@ const SignUpPage = () => {
             type="tel"
             inputMode="tel"
             pattern="^\+?[0-9]*$"
+            minLength={10}
             onChange={(e) => {
               const num = e.target.value.replace(/[^0-9+]/g, "");
               setUserData((prev) => ({ ...prev, phone: num }));
@@ -199,6 +216,11 @@ const SignUpPage = () => {
             required
             minLength={8}
             onChange={handleChange}
+            onKeyDown={(e) => {
+              if (e.key === " ") {
+                e.preventDefault();
+              }
+            }}
             value={userData.password}
             placeholder="Password"
             className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
@@ -213,6 +235,11 @@ const SignUpPage = () => {
             required
             minLength={8}
             onChange={handleChange}
+            onKeyDown={(e) => {
+              if (e.key === " ") {
+                e.preventDefault();
+              }
+            }}
             value={userData.confirmPassword}
             placeholder="Confirm Password"
             className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-3 rounded-md text-textPrimaryColor"

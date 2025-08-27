@@ -15,24 +15,33 @@ body {
   --font-serif: Manrope;
   --font-mono: Manrope;
 
-  --color-mainColor: #88b04b;
-  --color-mainLightColor: #a9c97e;
-  --color-mainDarkColor: #6c8c37;
-  --color-textPrimaryColor: #2e2f27;
-  --color-textPrimaryLightColor: #f4f7e7;
-  --color-textPrimaryDarkColor: #1c1d17;
-  --color-textMainColor: #88b04b;
-  --color-hintTextColor: #c7d4a0;
-  --color-bgColor: #f9fbef;
+  --color-mainColor: #ff8c00;
+  --color-mainLightColor: #ffa64d; 
+  --color-mainDarkColor: #cc7000;
+  --color-textMainColor: #ff8c00;
+
+  /* Text */
+  --color-textPrimaryColor: #141414;
+  --color-textPrimaryLightColor: #ffffff;
+  --color-textPrimaryDarkColor: #000000;
+  --color-textPlaceholderColor: #8c8c8c;
+  --color-hintTextColor: #7d7d7d; 
+
+  /* Background */
+  --color-bgColor: #f8f8f8;
   --color-bgLightColor: #ffffff;
-  --color-mainLightBgColor: #e9f2d7;
-  --color-mainDarkBgColor: #6c8c37;
-  --color-dividerColor: #d8e2c3;
-  --color-shadowColor: #c0d0b0;
-  --color-borderColor: #b4c49a;
-  --color-focusBorderColor: #88b04b;
+  --color-mainLightBgColor: #fff2e6; 
+  --color-mainDarkBgColor: #cc7000;
+
+  /* UI Neutrals */
+  --color-dividerColor: #e0e0e0;
+  --color-shadowColor: #c7c7c7;
+  --color-borderColor: #d0d0d0;
+  --color-focusBorderColor: #ff8c00;
+
+  /* Status */
   --color-ratingColor: #ffd700;
-  --color-successColor: #62a850;
-  --color-errorColor: #d72638;
-  --color-warningColor: #ffc107;
+  --color-successColor: #28a745; 
+  --color-errorColor: #d72638; 
+  --color-warningColor: #ffc107; 
 }

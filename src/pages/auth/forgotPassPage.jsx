@@ -22,8 +22,7 @@ const ForgotPasswordPage = () => {
       toast.success("Password reset link sent. Check your inbox.");
       setEmail("");
     } catch (err) {
-      console.error(err);
-      toast.error(err?.message || "Could not send reset email.");
+      toast.error(err?.code || "Could not send reset email.");
     } finally {
       setSending(false);
     }
@@ -31,8 +30,10 @@ const ForgotPasswordPage = () => {
 
   return (
     <div className="min-h-screen bg-bgColor py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
-      <div className="border relative px-4 pt-7 pb-8 bg-bgLightColor border-textMainColor shadow-md shadow-shadowColor w-11/12 sm:w-3/4 md:w-2/3 max-w-md mx-auto sm:px-10 rounded-md">
-        <div className="text-3xl text-textMainColor pb-6">Forgot Password</div>
+      <div className=" relative px-4 pt-7 pb-8 bg-white  shadow-md shadow-shadowColor w-11/12 sm:w-3/4 md:w-2/3 max-w-md mx-auto sm:px-10 rounded-md">
+        <div className="text-3xl text-textPrimaryColor pb-6">
+          Forgot Password
+        </div>
 
         <form onSubmit={onSubmit}>
           <label className="block pb-1 text-textPrimaryColor">Email</label>
@@ -41,6 +42,11 @@ const ForgotPasswordPage = () => {
             name="email"
             required
             value={email}
+            onKeyDown={(e) => {
+              if (e.key === " ") {
+                e.preventDefault();
+              }
+            }}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
             className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
