@@ -6,8 +6,7 @@ import { URL } from "../urlEndpoints";
 import { useAuth } from "../../core/AuthProvider";
 
 const PrivateRoutes = () => {
-  // const { user, loading } = useAuth();
-  const { user, loading } = { user: false, loading: false };
+  const { user, loading } = useAuth();
 
   return user ? (
     <ErrorBoundary FallbackComponent={ErrorFallback}>

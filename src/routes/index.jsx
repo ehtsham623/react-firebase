@@ -10,15 +10,14 @@ import CircularLoader from "../components/circularLoader";
 import { useAuth } from "../core/AuthProvider";
 
 const MainRouter = () => {
-  // const { user, loading } = useAuth();
-  const { user, loading } = { user: false, loading: false };
+  const { user, loading } = useAuth();
 
   return loading ? (
     <CircularLoader height />
   ) : (
     <Routes>
       <Route path={URL.INDEX} element={<PrivateRoutes />}>
-        <Route path={URL.HOME} element={<HomePage />} />
+        <Route path={URL.INDEX} element={<HomePage />} />
       </Route>
       <Route path={URL.INDEX} element={<PublicRoutes />}>
         <Route path={URL.LOGIN} element={<LoginPage />} />

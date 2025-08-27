@@ -7,8 +7,7 @@ import { URL } from "../urlEndpoints";
 import { useAuth } from "../../core/AuthProvider";
 
 const PublicRoutes = () => {
-  // const { user, loading } = useAuth();
-  const { user, loading } = { user: false, loading: false };
+  const { user, loading } = useAuth();
 
   return user ? (
     <Navigate to={URL.INDEX} />

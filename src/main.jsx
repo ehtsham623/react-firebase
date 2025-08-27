@@ -6,13 +6,16 @@ import MainRouter from "./routes";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./components/loader";
+import { AuthProvider } from "./core/AuthProvider";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Suspense fallback={<Loader />}>
       <ToastContainer autoClose={5000} transition={Slide} />
       <BrowserRouter>
-        <MainRouter />
+        <AuthProvider>
+          <MainRouter />
+        </AuthProvider>
       </BrowserRouter>
     </Suspense>
   </StrictMode>,

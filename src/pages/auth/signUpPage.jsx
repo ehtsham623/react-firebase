@@ -3,6 +3,7 @@ import { NavLink } from "react-router";
 import { URL } from "../../routes/urlEndpoints";
 import { useNavigate } from "react-router-dom";
 import CircularLoader from "../../components/circularLoader";
+import { auth } from "../../core/firebase";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -18,20 +19,17 @@ const SignUpPage = () => {
 
   const onContinue = async (event) => {
     event.preventDefault();
-    // signup({
-    //   name: userData.name,
-    //   email: userData.email,
-    //   password: userData.password,
-    // }).then((data) => {
-    //   setUserData({
-    //     name: "",
-    //     email: "",
-    //     password: "",
-    //   });
-    //   if (data.payload.statusCode === 200) {
-    //     navigate(URL.LOGIN);
-    //   }
-    // });
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      userData.email,
+      userData.password,
+    );
+    console.log(user);
+    setUserData({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -39,7 +37,7 @@ const SignUpPage = () => {
       <span className="border text-4xl text-textMainColor shadow-md shadow-shadowColor px-6 pt-10 pb-8 bg-bgLightColor w-1/2 max-w-md mx-auto rounded-t-md sm:px-10">
         Signup
       </span>
-      <div className="border relative px-4 pt-7 pb-8 bg-bgLightColor shadow-md shadow-shadowColor w-1/2 max-w-md mx-auto sm:px-10 rounded-b-md">
+      <div className="border relative px-4 pt-7 pb-8 bg-bgLightColor border-textMainColor shadow-md shadow-shadowColor w-1/2 max-w-md mx-auto sm:px-10 rounded-b-md">
         <form action="#" autoComplete="on" onSubmit={onContinue} method="post">
           <label className="block pb-1 text-textPrimaryColor">Name</label>
           <input
