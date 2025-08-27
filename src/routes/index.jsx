@@ -8,6 +8,7 @@ import SignUpPage from "../pages/auth/signUpPage";
 import HomePage from "../pages/home/homePage";
 import CircularLoader from "../components/circularLoader";
 import { useAuth } from "../core/AuthProvider";
+import ForgotPasswordPage from "../pages/auth/forgotPassPage";
 
 const MainRouter = () => {
   const { user, loading } = useAuth();
@@ -22,6 +23,7 @@ const MainRouter = () => {
       <Route path={URL.INDEX} element={<PublicRoutes />}>
         <Route path={URL.LOGIN} element={<LoginPage />} />
         <Route path={URL.SIGNUP} element={<SignUpPage />} />
+        <Route path={URL.FORGOT_PASSWORD} element={<ForgotPasswordPage />} />
       </Route>
       <Route path={"*"} element={<Navigate to={URL.INDEX} replace />} />
     </Routes>
