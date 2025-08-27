@@ -1,69 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+@theme {
+  --font-body: Poppins;
+  --font-sans: Poppins;
+  --font-serif: Poppins;
+  --font-mono: Poppins;
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  --color-mainColor: #88b04b;
+  --color-mainLightColor: #a9c97e;
+  --color-mainDarkColor: #6c8c37;
+  --color-textPrimaryColor: #2e2f27;
+  --color-textPrimaryLightColor: #f4f7e7;
+  --color-textPrimaryDarkColor: #1c1d17;
+  --color-textMainColor: #88b04b;
+  --color-hintTextColor: #c7d4a0;
+  --color-bgColor: #f9fbef;
+  --color-bgLightColor: #ffffff;
+  --color-mainLightBgColor: #e9f2d7;
+  --color-mainDarkBgColor: #6c8c37;
+  --color-dividerColor: #d8e2c3;
+  --color-shadowColor: #c0d0b0;
+  --color-borderColor: #b4c49a;
+  --color-focusBorderColor: #88b04b;
+  --color-ratingColor: #ffd700;
+  --color-successColor: #62a850;
+  --color-errorColor: #d72638;
+  --color-warningColor: #ffc107;
 }
