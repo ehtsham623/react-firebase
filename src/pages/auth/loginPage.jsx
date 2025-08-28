@@ -104,13 +104,13 @@ const LoginPage = () => {
           </div>
           <div className="text-center mt-3">
             <span className="text-sm text-textPlaceholderColor">
-              Didn’t have an account yet?{" "}
+              Didn’t have an account yet?
             </span>
             <NavLink
               to={URL.SIGNUP}
               className="text-sm font-semibold text-mainColor hover:text-mainDarkColor "
             >
-              Create Account
+              {" Create Account"}
             </NavLink>
           </div>
         </form>

@@ -9,14 +9,25 @@ body {
   margin: 0;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @theme {
   --font-body: Manrope;
   --font-sans: Manrope;
   --font-serif: Manrope;
   --font-mono: Manrope;
 
+  --shadow-custom: 0 2px 4px #0000001a, 0 8px 16px #0000001a;
+
   --color-mainColor: #ff8c00;
-  --color-mainLightColor: #ffa64d; 
+  --color-mainLightColor: #ffa64d;
   --color-mainDarkColor: #cc7000;
   --color-textMainColor: #ff8c00;
 
@@ -25,12 +36,12 @@ body {
   --color-textPrimaryLightColor: #ffffff;
   --color-textPrimaryDarkColor: #000000;
   --color-textPlaceholderColor: #8c8c8c;
-  --color-hintTextColor: #7d7d7d; 
+  --color-hintTextColor: #7d7d7d;
 
   /* Background */
   --color-bgColor: #f8f8f8;
   --color-bgLightColor: #ffffff;
-  --color-mainLightBgColor: #fff2e6; 
+  --color-mainLightBgColor: #fff2e6;
   --color-mainDarkBgColor: #cc7000;
 
   /* UI Neutrals */
@@ -41,7 +52,7 @@ body {
 
   /* Status */
   --color-ratingColor: #ffd700;
-  --color-successColor: #28a745; 
-  --color-errorColor: #d72638; 
-  --color-warningColor: #ffc107; 
+  --color-successColor: #28a745;
+  --color-errorColor: #d72638;
+  --color-warningColor: #ffc107;
 }

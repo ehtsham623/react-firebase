@@ -28,6 +28,13 @@ const SignUpPage = () => {
     setUserData((prev) => ({ ...prev, [name]: value }));
   }
 
+  function removePhoto() {
+    setPhotoFile(null);
+    setPhotoPreview("");
+    const inp = document.getElementById("photo");
+    if (inp) inp.value = "";
+  }
+
   function handlePhoto(e) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -35,7 +42,13 @@ const SignUpPage = () => {
       toast.error("Please select an image file");
       return;
     }
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Maximum file size is 10MB");
+      return;
+    }
     setPhotoFile(file);
+    const url = window.URL.createObjectURL(file);
+    setPhotoPreview(url);
   }
 
   useEffect(() => {
@@ -118,36 +131,18 @@ const SignUpPage = () => {
 
   return (
     <div className="min-h-screen bg-bgColor py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
-      <div className=" relative px-4 pt-7 pb-8 bg-white  shadow-md shadow-shadowColor w-11/12 sm:w-3/4 md:w-2/3 max-w-md mx-auto sm:px-10 rounded-md">
+      <div className="min-h-screen ring-2 ring-gray-900/5 relative px-4 pt-6 pb-8 bg-bgLightColor  shadow-md shadow-shadowColor w-1/2 max-w-md mx-auto sm:px-6 rounded-2xl">
+        <div className="font-semibold text-2xl leading-5 tracking-[-0.01em]  text-textPrimaryColor pb-2">
+          Welcome to PunchPad
+        </div>
+        <div className="text-sm text-textPlaceholderColor pb-4">
+          Create your account to start earning amazing rewards with every
+          Punchpad product purchase.
+        </div>
         <form autoComplete="on" onSubmit={onContinue}>
-          <div className="flex flex-col items-center mb-6">
-            <div className="relative w-24 h-24 rounded-full border-2 border-borderColor overflow-hidden bg-mainLightColor">
-              {photoPreview ? (
-                <img
-                  src={photoPreview}
-                  alt=""
-                  className="object-cover w-full h-full"
-                />
-              ) : (
-                <></>
-              )}
-            </div>
-            <label
-              htmlFor="photo"
-              className="mt-3 px-4  rounded-md  text-textPrimaryColor text-sm  cursor-pointer "
-            >
-              {photoPreview ? "Change" : "Pick Profile"}
-            </label>
-            <input
-              id="photo"
-              type="file"
-              accept="image/*"
-              onChange={handlePhoto}
-              className="hidden"
-            />
-          </div>
-
-          <label className="block pb-1 text-textPrimaryColor">Name</label>
+          <label className="block pb-1 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
+            Full Name
+          </label>
           <input
             name="name"
             type="text"
@@ -163,10 +158,12 @@ const SignUpPage = () => {
             }}
             value={userData.name}
             placeholder="John Doe"
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 text-textPrimaryColor">Email</label>
+          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
+            Email Address
+          </label>
           <input
             name="email"
             type="email"
@@ -179,10 +176,12 @@ const SignUpPage = () => {
             }}
             value={userData.email}
             placeholder="you@example.com"
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 text-textPrimaryColor">Phone</label>
+          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
+            Phone Number
+          </label>
           <input
             name="phone"
             type="tel"
@@ -195,10 +194,10 @@ const SignUpPage = () => {
             }}
             value={userData.phone}
             placeholder="+923000000000"
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 text-textPrimaryColor">
+          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
             Date of Birth
           </label>
           <input
@@ -206,10 +205,12 @@ const SignUpPage = () => {
             type="date"
             onChange={handleChange}
             value={userData.dob}
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 text-textPrimaryColor">Password</label>
+          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
+            Create Password
+          </label>
           <input
             name="password"
             type="password"
@@ -223,10 +224,10 @@ const SignUpPage = () => {
             }}
             value={userData.password}
             placeholder="Password"
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 text-textPrimaryColor">
+          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
             Confirm Password
           </label>
           <input
@@ -242,23 +243,92 @@ const SignUpPage = () => {
             }}
             value={userData.confirmPassword}
             placeholder="Confirm Password"
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-3 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <div className="flex justify-between items-center">
-            <button
-              type="submit"
-              disabled={loading}
-              className="mt-5 bg-mainColor hover:bg-mainDarkBgColor text-textPrimaryLightColor uppercase text-sm font-semibold px-14 py-3 rounded disabled:opacity-60"
-            >
-              {loading ? "Creating..." : "Signup"}
-            </button>
+          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
+            Add Profile Picture
+          </label>
 
+          <div className="mb-6">
+            {!photoPreview && (
+              <label
+                htmlFor="photo"
+                className="w-full h-28 rounded-xl border border-borderColor bg-bgLightColor hover:bg-mainLightBgColor transition border-dashed cursor-pointer flex flex-col items-center justify-center text-center"
+              >
+                <svg
+                  className="w-6 h-6 text-textPrimaryColor mb-2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M16 12l-4-4m0 0l-4 4m4-4v12"
+                  />
+                </svg>
+                <span className="text-base text-textPrimaryColor font-medium">
+                  Upload Image
+                </span>
+                <span className="text-sm font-normal text-textPlaceholderColor mt-1">
+                  Maximum file 10MB
+                </span>
+              </label>
+            )}
+
+            {photoPreview && (
+              <div className="relative inline-block">
+                <img
+                  src={photoPreview}
+                  alt="profile preview"
+                  className="w-20 h-20 rounded-lg object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={removePhoto}
+                  className="absolute -right-2 -top-2 w-6 h-6 rounded-full bg-textPrimaryColor text-textPrimaryLightColor flex items-center justify-center text-xs shadow-custom"
+                  aria-label="Remove photo"
+                  title="Remove"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
+            <input
+              id="photo"
+              type="file"
+              accept="image/*"
+              onChange={handlePhoto}
+              className="hidden"
+            />
+          </div>
+
+          <div className="flex">
+            {loading ? (
+              <div className="mt-4">
+                <CircularLoader />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full h-12 mt-5 bg-mainColor hover:bg-mainDarkBgColor text-textPrimaryLightColor uppercase text-sm font-semibold px-14  rounded-full"
+              >
+                {loading ? "Creating..." : "Signup"}
+              </button>
+            )}
+          </div>
+          <div className="text-center mt-3">
+            <span className="text-sm text-textPlaceholderColor">
+              Already have an account?
+            </span>
             <NavLink
               to={URL.LOGIN}
-              className="mt-5 text-hintTextColor hover:text-mainColor uppercase text-sm font-semibold"
+              className="text-sm font-semibold text-mainColor hover:text-mainDarkColor "
             >
-              Login
+              {" Login"}
             </NavLink>
           </div>
         </form>

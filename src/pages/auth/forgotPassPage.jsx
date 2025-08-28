@@ -30,13 +30,18 @@ const ForgotPasswordPage = () => {
 
   return (
     <div className="min-h-screen bg-bgColor py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
-      <div className=" relative px-4 pt-7 pb-8 bg-white  shadow-md shadow-shadowColor w-11/12 sm:w-3/4 md:w-2/3 max-w-md mx-auto sm:px-10 rounded-md">
-        <div className="text-3xl text-textPrimaryColor pb-6">
+      <div className=" ring-2 ring-gray-900/5 relative px-4 pt-6 pb-8 bg-bgLightColor  shadow-md shadow-shadowColor w-1/2 max-w-md mx-auto sm:px-6 rounded-2xl">
+        <div className="font-semibold text-2xl leading-5 tracking-[-0.01em]  text-textPrimaryColor pb-2">
           Forgot Password
+        </div>
+        <div className="text-sm text-textPlaceholderColor pb-4">
+          Please provide your email address to receive the password reset link.
         </div>
 
         <form onSubmit={onSubmit}>
-          <label className="block pb-1 text-textPrimaryColor">Email</label>
+          <label className="block pb-1 pt-1 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
+            Email Address
+          </label>
           <input
             type="email"
             name="email"
@@ -49,25 +54,24 @@ const ForgotPasswordPage = () => {
             }}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="border border-borderColor focus:border-focusBorderColor focus:ring-1 focus:ring-focusBorderColor w-full h-10 px-3 mb-5 rounded-md text-textPrimaryColor"
+            className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              disabled={sending}
-              className="mt-2 bg-mainColor hover:bg-mainDarkBgColor text-textPrimaryLightColor uppercase text-sm font-semibold px-6 py-2 rounded disabled:opacity-60"
-            >
-              {sending ? "Sending..." : "Send Reset Link"}
-            </button>
-
+          <div className="pt-3 text-right">
             <NavLink
               to={URL.LOGIN}
-              className="mt-2 text-hintTextColor hover:text-mainColor uppercase text-sm font-semibold"
+              className="text-sm text-textPlaceholderColor hover:text-mainColor "
             >
               Back to Login
             </NavLink>
           </div>
+          <button
+            type="submit"
+            disabled={sending}
+            className="w-full h-12 mt-4 bg-mainColor hover:bg-mainDarkBgColor text-textPrimaryLightColor uppercase text-sm font-semibold px-14  rounded-full"
+          >
+            {sending ? "Sending..." : "Send Reset Link"}
+          </button>
         </form>
       </div>
     </div>
