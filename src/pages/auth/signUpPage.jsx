@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "react-toastify";
+import FormLabel from "../../components/FormLabel";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -140,9 +141,7 @@ const SignUpPage = () => {
           Punchpad product purchase.
         </div>
         <form autoComplete="on" onSubmit={onContinue}>
-          <label className="block pb-1 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Full Name
-          </label>
+          <FormLabel>Full Name</FormLabel>
           <input
             name="name"
             type="text"
@@ -161,9 +160,7 @@ const SignUpPage = () => {
             className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Email Address
-          </label>
+          <FormLabel>Email Address</FormLabel>
           <input
             name="email"
             type="email"
@@ -179,9 +176,7 @@ const SignUpPage = () => {
             className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Phone Number
-          </label>
+          <FormLabel>Phone Number</FormLabel>
           <input
             name="phone"
             type="tel"
@@ -197,9 +192,7 @@ const SignUpPage = () => {
             className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Date of Birth
-          </label>
+          <FormLabel>Date of Birth</FormLabel>
           <input
             name="dob"
             type="date"
@@ -208,9 +201,7 @@ const SignUpPage = () => {
             className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Create Password
-          </label>
+          <FormLabel>Create Password</FormLabel>
           <input
             name="password"
             type="password"
@@ -227,9 +218,7 @@ const SignUpPage = () => {
             className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Confirm Password
-          </label>
+          <FormLabel>Confirm Password</FormLabel>
           <input
             name="confirmPassword"
             type="password"
@@ -246,15 +235,13 @@ const SignUpPage = () => {
             className="w-full h-12 px-4 pb-0.5 text-start rounded-full border border-borderColor text-textPrimaryColor placeholder-textPlaceholderColor focus:border-focusBorderColor focus:ring-2 focus:ring-focusBorderColor/15 outline-none transition"
           />
 
-          <label className="block pb-1 pt-3 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Add Profile Picture
-          </label>
+          <FormLabel>Add Profile Picture</FormLabel>
 
           <div className="mb-6">
             {!photoPreview && (
               <label
                 htmlFor="photo"
-                className="w-full h-28 rounded-xl border border-borderColor bg-bgLightColor hover:bg-mainLightBgColor transition border-dashed cursor-pointer flex flex-col items-center justify-center text-center"
+                className="w-full h-32 rounded-xl border border-borderColor bg-bgLightColor hover:bg-mainLightBgColor transition border-dashed cursor-pointer flex flex-col items-center justify-center text-center"
               >
                 <svg
                   className="w-6 h-6 text-textPrimaryColor mb-2"
@@ -314,7 +301,7 @@ const SignUpPage = () => {
             ) : (
               <button
                 type="submit"
-                className="w-full h-12 mt-5 bg-mainColor hover:bg-mainDarkBgColor text-textPrimaryLightColor uppercase text-sm font-semibold px-14  rounded-full"
+                className="w-full h-12 mt-2 bg-mainColor hover:bg-mainDarkBgColor text-textPrimaryLightColor uppercase text-sm font-semibold px-14  rounded-full"
               >
                 {loading ? "Creating..." : "Signup"}
               </button>

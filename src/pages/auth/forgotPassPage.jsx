@@ -4,6 +4,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../core/firebase";
 import { toast } from "react-toastify";
 import { URL } from "../../routes/urlEndpoints";
+import FormLabel from "../../components/FormLabel";
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
@@ -39,9 +40,7 @@ const ForgotPasswordPage = () => {
         </div>
 
         <form onSubmit={onSubmit}>
-          <label className="block pb-1 pt-1 text-textPrimaryColor font-normal text-base leading-6 tracking-normal">
-            Email Address
-          </label>
+          <FormLabel>Email Address</FormLabel>
           <input
             type="email"
             name="email"
